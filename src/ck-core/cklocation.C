@@ -2088,7 +2088,6 @@ CkLocMgr::CkLocMgr(CkMigrateMessage* m)
 CkLocMgr::~CkLocMgr() {
 #if CMK_LBDB_ON
   lbmgr->RemoveLocalBarrierClient(lbBarrierClient);
-  lbmgr->DecreaseLocalBarrier(1);
   lbmgr->RemoveLocalBarrierReceiver(lbBarrierReceiver);
   lbmgr->UnregisterOM(myLBHandle);
 #endif
