@@ -3,10 +3,10 @@
 
 #include "lbdb.h"
 
+#include "LBObj.h"
+#include "LBOM.h"
 #include "LBComm.h"
 #include "LBMachineUtil.h"
-#include "LBOM.h"
-#include "LBObj.h"
 
 #include <vector>
 
