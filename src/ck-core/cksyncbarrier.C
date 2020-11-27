@@ -156,8 +156,7 @@ void CkSyncBarrier::recvLbStart(int lb_step, int sourcenode, int pe)
     rank_needs_flood[pe - mype] = false;
   else
     received_from_rank0 = true;
-  if (clients.size() == 1 &&
-      clients.front()->chare->isLocMgr())  // CkLocMgr is usually a client on each PE
+  if (clients.empty())
     CheckBarrier(true);  // Empty PE invokes barrier on self on receiving a flood msg
 }
 
@@ -166,18 +165,6 @@ void CkSyncBarrier::CheckBarrier(bool flood_atsync)
   if (!on) return;
 
   const auto client_count = clients.size();
-
-  if (client_count == 1 && !flood_atsync)
-  {
-    if (clients.front()->chare->isLocMgr()) return;
-  }
-
-  // If there are no clients, resume as soon as we're turned on
-  if (client_count == 0)
-  {
-    cur_epoch++;
-    CallReceivers();
-  }
 
   if (at_count >= client_count)
   {
