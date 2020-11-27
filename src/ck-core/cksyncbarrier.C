@@ -166,6 +166,8 @@ void CkSyncBarrier::CheckBarrier(bool flood_atsync)
 
   const auto client_count = clients.size();
 
+  if (client_count == 0 && !flood_atsync) return;
+
   if (at_count >= client_count)
   {
     bool at_barrier = true;
